@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719213530) do
+ActiveRecord::Schema.define(version: 20170720023541) do
+
+  create_table "data_files", force: :cascade do |t|
+    t.integer  "plug_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plug_id"], name: "index_data_files_on_plug_id"
+  end
 
   create_table "plugs", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +26,14 @@ ActiveRecord::Schema.define(version: 20170719213530) do
     t.string   "ip_address"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "readings", force: :cascade do |t|
+    t.datetime "date_time"
+    t.integer  "consumption"
+    t.integer  "temperature"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
