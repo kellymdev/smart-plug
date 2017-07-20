@@ -1,3 +1,4 @@
 <h2><%= @plug.name %></h2>
 
-<%= link_to 'Edit Plug', edit_plug_path(@plug) %>
+<%= link_to 'Edit Plug', edit_plug_path(@plug) %> | 
+<%= link_to 'Delete Plug', plug_path(@plug), data: { confirm: 'Are you sure?' }, method: :delete %>

@@ -1,5 +1,5 @@
 class PlugsController < ApplicationController
-  before_action :find_plug, only: [:show, :edit, :update]
+  before_action :find_plug, only: [:show, :edit, :update, :destroy]
 
   def index
     @plugs = Plug.all.order(:id)
@@ -31,6 +31,12 @@ class PlugsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @plug.destroy!
+
+    redirect_to plugs_path
   end
 
   private

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PlugsController, type: :controller do
   render_views
 
-  let(:plug) { Plug.create!(name: 'Test Plug', login_user: 'admin', login_password: '1234', ip_address: '127.0.0.1') }
+  let!(:plug) { Plug.create!(name: 'Test Plug', login_user: 'admin', login_password: '1234', ip_address: '127.0.0.1') }
 
   let(:valid_params) do
     {
@@ -112,6 +112,18 @@ RSpec.describe PlugsController, type: :controller do
 
         expect(response).to render_template :edit
       end
+    end
+  end
+
+  describe '#destroy' do
+    it 'deletes the plug' do
+      expect { delete :destroy, params: { id: plug.id } }.to change { Plug.count }.by -1
+    end
+
+    it 'redirects to the index page' do
+      delete :destroy, params: { id: plug.id }
+
+      expect(response).to redirect_to plugs_path
     end
   end
 end
