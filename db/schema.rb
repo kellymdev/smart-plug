@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20170720023541) do
 
   create_table "data_files", force: :cascade do |t|
+    t.string   "filename"
     t.integer  "plug_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,8 +33,10 @@ ActiveRecord::Schema.define(version: 20170720023541) do
     t.datetime "date_time"
     t.integer  "consumption"
     t.integer  "temperature"
+    t.integer  "plug_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["plug_id"], name: "index_readings_on_plug_id"
   end
 
 end

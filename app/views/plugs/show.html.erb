@@ -1,4 +1,26 @@
 <h2><%= @plug.name %></h2>
 
+<%= form_tag({ controller: :data_files, action: :upload }, multipart: true) do %>
+  <%= hidden_field_tag 'plug_id', @plug.id %>
+  <%= file_field_tag 'data_file' %>
+  <%= submit_tag 'Upload Data File' %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Date Time</th>
+    <th>Consumption</th>
+    <th>Temperature</th>
+  </tr>
+
+  <% @plug.readings.each do |reading| %>
+    <tr>
+      <td><%= reading.date_time %></td>
+      <td><%= reading.consumption %></td>
+      <td><%= reading.temperature %></td>
+    </tr>
+  <% end %>
+</table>
+
 <%= link_to 'Edit Plug', edit_plug_path(@plug) %> | 
 <%= link_to 'Delete Plug', plug_path(@plug), data: { confirm: 'Are you sure?' }, method: :delete %>
