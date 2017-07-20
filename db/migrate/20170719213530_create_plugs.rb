@@ -4,7 +4,7 @@ class CreatePlugs < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :login_user
       t.string :login_password
-      t.string :hnap_url
+      t.string :ip_address
       t.timestamps
     end
   end

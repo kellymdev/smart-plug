@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170719213530) do
     t.string   "name"
     t.string   "login_user"
     t.string   "login_password"
-    t.string   "hnap_url"
+    t.string   "ip_address"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
