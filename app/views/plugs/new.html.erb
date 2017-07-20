@@ -1,0 +1,7 @@
+<h2>Register Plug</h2>
+
+<%= form_for @plug do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+
+  <%= f.submit 'Register' %>
+<% end %>

@@ -1,0 +1,7 @@
+<h2>Smart Plugs</h2>
+
+<p><%= link_to 'Register Plug', new_plug_path %></p>
+
+<% @plugs.each do |plug| %>
+  <%= link_to plug.name, plug_path(plug) %>
+<% end %>
