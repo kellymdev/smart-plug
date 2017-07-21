@@ -4,9 +4,14 @@ class DataFilesController < ApplicationController
   def upload
     file = params[:data_file]
 
-    ImportDataFromFile.new(@plug, file.tempfile).call
+    if file
+      ImportDataFromFile.new(@plug, file.tempfile).call
 
-    @plug.data_files.create!(filename: file.path)
+      @plug.data_files.create!(filename: file.path)
+
+    else
+      flash[:error] = 'Please select a file to upload'
+    end
 
     redirect_to plug_path(@plug)
   end
