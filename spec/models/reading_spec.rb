@@ -4,7 +4,8 @@ RSpec.describe Reading, type: :model do
   let(:date_time) { DateTime.parse('19/5/2017 03:04:50') }
   let(:consumption) { 11 }
   let(:temperature) { 40 }
-  let(:reading) { Reading.new(date_time: date_time, consumption: consumption, temperature: temperature) }
+  let!(:plug) { Plug.create!(name: 'Test Plug', login_user: 'admin', login_password: '1234', ip_address: '127.0.0.1') }
+  let(:reading) { Reading.new(date_time: date_time, consumption: consumption, temperature: temperature, plug: plug) }
 
   describe 'validations' do
     context 'date_time' do
