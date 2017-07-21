@@ -6,6 +6,8 @@
   <%= submit_tag 'Upload Data File' %>
 <% end %>
 
+<p><%= @plug.readings.count %> readings from <%= @plug.data_files.count %> files</p>
+
 <table>
   <tr>
     <th>Date Time</th>
@@ -15,7 +17,7 @@
 
   <% @plug.readings.each do |reading| %>
     <tr>
-      <td><%= reading.date_time %></td>
+      <td><%= displayable_date_time(reading.date_time) %></td>
       <td><%= reading.consumption %></td>
       <td><%= reading.temperature %></td>
     </tr>
