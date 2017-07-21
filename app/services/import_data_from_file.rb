@@ -17,15 +17,26 @@ class ImportDataFromFile
     datetime, consumption, temperature = data.split(';')
     formatted_datetime = format_datetime(datetime)
 
-    @plug.readings.create!(
-      date_time: formatted_datetime,
-      consumption: consumption.to_i,
-      temperature: temperature.to_i
-    )
+    if reading = find_reading_for(formatted_datetime)
+      reading.update!(
+        consumption: consumption.to_i,
+        temperature: temperature.to_i
+      )
+    else
+      @plug.readings.create!(
+        date_time: formatted_datetime,
+        consumption: consumption.to_i,
+        temperature: temperature.to_i
+      )
+    end
   end
 
   def format_datetime(datetime)
     date = datetime.split(',').join
     DateTime.strptime(date, '%m/%d/%Y %H:%M:%S %p')
+  end
+
+  def find_reading_for(datetime)
+    @plug.readings.find_by(date_time: datetime)
   end
 end
