@@ -8,6 +8,8 @@
 
 <p><%= @plug.readings.count %> readings from <%= @plug.data_files.count %> files</p>
 
+<svg class="consumption-chart plug-<%= @plug.id %>" width=960 height=400></svg>
+
 <table>
   <tr>
     <th>Date Time</th>
