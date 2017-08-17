@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 function drawConsumption(data) {
-  var margin = {top: 20, right: 30, bottom: 30, left: 40};
+  var margin = {top: 30, right: 30, bottom: 30, left: 40};
   var width = 960 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 
@@ -64,6 +64,13 @@ function drawConsumption(data) {
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("Consumption");
+
+  chart.append("text")
+    .attr("class", "axis-label")
+    .style("texh-anchor", "middle")
+    .attr("y", 370)
+    .attr("x", (width / 2))
+    .text("Time");
 
   chart.append("text")
     .attr("class", "chart-title")
