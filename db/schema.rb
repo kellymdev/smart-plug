@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720023541) do
+ActiveRecord::Schema.define(version: 20170817232246) do
 
   create_table "data_files", force: :cascade do |t|
     t.string   "filename"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 20170720023541) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plug_id"], name: "index_data_files_on_plug_id"
+  end
+
+  create_table "hnap_logins", force: :cascade do |t|
+    t.integer  "plug_id"
+    t.string   "login_result"
+    t.string   "challenge"
+    t.string   "public_key"
+    t.string   "cookie"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["plug_id"], name: "index_hnap_logins_on_plug_id"
   end
 
   create_table "plugs", force: :cascade do |t|
