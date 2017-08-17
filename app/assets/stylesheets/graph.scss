@@ -1,5 +1,25 @@
+// Colours
+$dark-grey: #43464C;
+$mid-grey: #9197A6;
+$light-grey: #D3DCF2;
+$mid-blue: #9BABCF;
+$dark-blue: #48577D;
+
+// Fonts
+$heading-font: 'Poppins', sans-serif;
+$body-font: 'Archivo', sans-serif;
+
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: $dark-blue;
   stroke-width: 2px;
+}
+
+.axis-label {
+  font-size: 12px;
+  color: $mid-blue;
+}
+
+.chart-title {
+  font-family: $heading-font;
 }

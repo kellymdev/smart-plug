@@ -1,9 +1,11 @@
 <h2><%= @plug.name %></h2>
 
-<%= form_tag({ controller: :data_files, action: :upload }, multipart: true) do %>
+<%= render partial: 'plug_actions' %>
+
+<%= form_tag({ controller: :data_files, action: :upload}, multipart: true, class: 'data-form') do %>
   <%= hidden_field_tag 'plug_id', @plug.id %>
   <%= file_field_tag 'data_file' %>
-  <%= submit_tag 'Upload Data File' %>
+  <%= submit_tag 'Upload Data File', class: "button" %>
 <% end %>
 
 <p><%= @plug.readings.count %> readings from <%= @plug.data_files.count %> files</p>
@@ -12,7 +14,7 @@
 
 <svg class="temperature-chart plug-<%= @plug.id %>" width=960 height=400></svg>
 
-<table>
+<table class="data-table">
   <tr>
     <th>Date Time</th>
     <th>Consumption</th>
@@ -27,6 +29,3 @@
     </tr>
   <% end %>
 </table>
-
-<%= link_to 'Edit Plug', edit_plug_path(@plug) %> | 
-<%= link_to 'Delete Plug', plug_path(@plug), data: { confirm: 'Are you sure?' }, method: :delete %>

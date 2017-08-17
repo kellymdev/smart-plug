@@ -1,0 +1,61 @@
+// Colours
+$dark-grey: #43464C;
+$mid-grey: #9197A6;
+$light-grey: #D3DCF2;
+$mid-blue: #9BABCF;
+$dark-blue: #48577D;
+
+// Fonts
+$heading-font: 'Poppins', sans-serif;
+$body-font: 'Archivo', sans-serif;
+
+body {
+  background-color: $light-grey;
+  color: $dark-grey;
+  font-family: $body-font;
+}
+
+h2 {
+  font-family: $heading-font;
+}
+
+.button {
+  background-color: $mid-blue;
+  color: $dark-blue;
+  border: 1px solid $dark-blue;
+  border-radius: 3px;
+}
+
+.action-button {
+  @extend .button;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 0.9em;
+  margin: 5px;
+}
+
+.data-table {
+  margin: 5px;
+
+  th, td {
+    border: 1px solid $mid-blue;
+    padding: 5px;
+  }
+}
+
+.form {
+  padding: 5px;
+}
+
+.data-form {
+  @extend .form;
+  margin: 20px 10px 10px 5px;
+
+  input[type="file"] {
+    border: 1px solid $mid-blue;
+  }
+}
+
+.new-plug {
+  @extend .form;
+}
