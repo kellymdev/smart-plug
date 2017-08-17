@@ -4,6 +4,11 @@ $(document).ready(function() {
     displayInfoBox(infoText);
   });
 
+  $('.temperature-chart').on('click', function() {
+    var infoText = $(this).attr('info');
+    displayInfoBox(infoText);
+  });
+
   $('body').on('click', '.info-box', function() {
     closeInfoBox();
   });
