@@ -67,7 +67,7 @@ function drawConsumption(data) {
 
   chart.append("text")
     .attr("class", "axis-label")
-    .style("texh-anchor", "middle")
+    .style("text-anchor", "middle")
     .attr("y", 370)
     .attr("x", (width / 2))
     .text("Time");
