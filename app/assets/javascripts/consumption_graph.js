@@ -21,14 +21,14 @@ function drawConsumption(data) {
   var width = 960 - margin.left - margin.right;
   var height = 400 - margin.top - margin.bottom;
 
-  var x = d3.scaleBand().rangeRound([0, width]);
-  var y = d3.scaleLinear().range([height, 0]);
-  var xAxis = d3.axisBottom().scale(x);
-  var yAxis = d3.axisLeft().scale(y);
+  var parseDateTime = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
 
-  var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+
+  var valueline = d3.line()
+    .x(function(d) { return x(d.date_time); })
+    .y(function(d) { return y(d.consumption); });
 
   var chart = d3.select(".consumption-chart")
     .attr("width", width + margin.left + margin.right)
@@ -36,12 +36,25 @@ function drawConsumption(data) {
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  x.domain(data.map(function(d) {return d.dateTime; }));
+  data.forEach(function(d) {
+    d.date_time = parseDateTime(d.date_time);
+    d.consumption = +d.consumption;
+  });
+
+  x.domain(d3.extent(data, function(d) { return d.date_time; }));
   y.domain([0, d3.max(data, function(d) { return d.consumption; })]);
 
+  chart.append("path")
+    .data([data])
+    .attr("class", "line")
+    .attr("d", valueline);
+
   chart.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  chart.append("g")
+    .call(d3.axisLeft(y));
 
   chart.append("text")
     .attr("class", "axis-label")
@@ -51,32 +64,6 @@ function drawConsumption(data) {
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("Consumption");
-
-  chart.selectAll(".bar")
-    .data(data)
-    .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) { return x(d.dateTime); })
-    .attr("y", function(d) { return y(d.consumption); })
-    .attr("height", function(d) { return height - y(d.consumption); })
-    .attr("width", 5)
-    .on("mouseover", function(d) {
-      d3.select(this)
-        .style("fill", "#94A7AD");
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html(d.dateTime + "<br/>" + d.consumption)
-        .style("left", (d3.event.pageX) + "px")
-        .style("top", (d3.event.pageY - 28) + "px");
-    })
-    .on("mouseout", function(d) {
-      d3.select(this)
-        .style("fill", "#8A735B");
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
-    });
 
   chart.append("text")
     .attr("class", "chart-title")
