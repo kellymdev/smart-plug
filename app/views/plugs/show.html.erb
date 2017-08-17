@@ -2,13 +2,14 @@
 
 <%= render partial: 'plug_actions' %>
 
+<p class="intro-text">You currently have <%= @plug.readings.count %> readings from <%= @plug.data_files.count %> files. Upload another file for more data.</p>
+
 <%= form_tag({ controller: :data_files, action: :upload}, multipart: true, class: 'data-form') do %>
   <%= hidden_field_tag 'plug_id', @plug.id %>
   <%= file_field_tag 'data_file' %>
   <%= submit_tag 'Upload Data File', class: "button" %>
 <% end %>
 
-<p><%= @plug.readings.count %> readings from <%= @plug.data_files.count %> files</p>
 
 <svg class="consumption-chart plug-<%= @plug.id %>" width=960 height=400></svg>
 

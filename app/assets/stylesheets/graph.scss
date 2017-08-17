@@ -23,3 +23,7 @@ $body-font: 'Archivo', sans-serif;
 .chart-title {
   font-family: $heading-font;
 }
+
+.consumption-chart, .temperature-chart {
+  margin-bottom: 20px;
+}

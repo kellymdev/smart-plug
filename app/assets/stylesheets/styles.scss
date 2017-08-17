@@ -6,7 +6,7 @@ $mid-blue: #9BABCF;
 $dark-blue: #48577D;
 
 // Fonts
-$heading-font: 'Poppins', sans-serif;
+$heading-font: 'Poppins', sans-serif;;
 $body-font: 'Archivo', sans-serif;
 
 body {
@@ -17,6 +17,11 @@ body {
 
 h2 {
   font-family: $heading-font;
+}
+
+.intro-text {
+  font-size: 0.9em;
+  margin: 40px 5px 5px 5px;
 }
 
 .button {
@@ -30,7 +35,7 @@ h2 {
   @extend .button;
   padding: 5px;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: 0.8em;
   margin: 5px;
 }
 
@@ -45,17 +50,27 @@ h2 {
 
 .form {
   padding: 5px;
+
+  .form-field {
+    padding: 5px;
+    border: 1px solid $mid-blue;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
 }
 
 .data-form {
   @extend .form;
-  margin: 20px 10px 10px 5px;
+  margin: 5px 10px 10px 5px;
 
-  input[type="file"] {
+  input[type=file] {
     border: 1px solid $mid-blue;
   }
 }
 
-.new-plug {
+.new_plug, .edit_plug {
   @extend .form;
+
+  width: 400px;
 }
