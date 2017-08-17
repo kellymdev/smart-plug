@@ -1,19 +1,22 @@
 $(document).ready(function() {
   var plug = $(".consumption-chart").attr("class");
-  var plugId = plug.substring(23, plug.length);
 
-  $.ajax({
-          type: "GET",
-          contentType: "application/json; charset=utf-8",
-          url: plugId + "/consumption_data",
-          dataType: "json",
-          success: function(data) {
-            drawConsumption(data);
-          },
-          error: function(result) {
-            error();
-          }
-        });
+  if (plug) {
+    var plugId = plug.substring(23, plug.length);
+
+    $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: plugId + "/consumption_data",
+            dataType: "json",
+            success: function(data) {
+              drawConsumption(data);
+            },
+            error: function(result) {
+              error();
+            }
+          });
+  }
 });
 
 function drawConsumption(data) {

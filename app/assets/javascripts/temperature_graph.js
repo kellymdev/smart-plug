@@ -1,19 +1,22 @@
 $(document).ready(function() {
   var plug = $(".temperature-chart").attr("class");
-  var plugId = plug.substring(23, plug.length);
 
-  $.ajax({
-          type: "GET",
-          contentType: "application/json; charset=utf-8",
-          url: plugId + "/temperature_data",
-          dataType: "json",
-          success: function(data) {
-            drawTemperature(data);
-          },
-          error: function(result) {
-            error();
-          }
-        });
+  if (plug) {
+    var plugId = plug.substring(23, plug.length);
+
+    $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: plugId + "/temperature_data",
+            dataType: "json",
+            success: function(data) {
+              drawTemperature(data);
+            },
+            error: function(result) {
+              error();
+            }
+          });
+  }
 });
 
 function drawTemperature(data) {
