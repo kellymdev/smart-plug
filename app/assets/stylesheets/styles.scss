@@ -74,3 +74,22 @@ h2 {
 
   width: 400px;
 }
+
+.info-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  color: $dark-blue;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  p {
+    background-color: $mid-blue;
+    padding: 20px;
+    text-align: center;
+  }
+}
