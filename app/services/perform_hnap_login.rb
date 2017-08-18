@@ -2,8 +2,8 @@ class PerformHnapLogin
   attr_reader :plug, :hnap_login
 
   BASE_URL = 'http://purenetworks.com/HNAP1/'
-  LOGIN_URL = "#{base_url}Login"
-  LOGIN_RESULT_URL = "#{base_url}LoginResult"
+  LOGIN_URL = "#{BASE_URL}Login"
+  LOGIN_RESULT_URL = "#{BASE_URL}LoginResult"
 
   def initialize(plug)
     @plug = plug
@@ -21,7 +21,7 @@ class PerformHnapLogin
   private
 
   def plug_url
-    "http://#{plug.id}/HNAP1"
+    "http://#{plug.ip_address}/HNAP1"
   end
 
   def login_headers
@@ -54,10 +54,10 @@ class PerformHnapLogin
   def parse_xml(response)
     doc = Nokogiri::XML(response)
 
-    login_result = doc.xpath('//LoginResult')
-    challenge = doc.xpath('//Challenge')
-    public_key = doc.xpath('//PublicKey')
-    cookie = doc.xpath('//Cookie')
+    login_result = doc.xpath('//LoginResult').text
+    challenge = doc.xpath('//Challenge').text
+    public_key = doc.xpath('//PublicKey').text
+    cookie = doc.xpath('//Cookie').text
 
     hnap_login.update!(
       login_result: login_result,
