@@ -67,11 +67,6 @@ class PerformHnapLogin
     )
   end
 
-  def private_key
-    # TODO: HMAC_MD5 this
-    "#{hnap_login.public_key} #{plug.login_password} #{hnap_login.challenge}".upcase
-  end
-
   def perform_login
     HTTParty.post(plug_url, headers: login_result_headers, body: login_result_body)
   end
@@ -87,7 +82,7 @@ class PerformHnapLogin
 
   def hnap_auth
     time_stamp = Time.now
-    auth = "#{private_key} #{time_stamp} #{LOGIN_RESULT_URL}" # TODO: HMAC_MD5 this
+    auth = "#{hnap_login.private_key}#{time_stamp}#{LOGIN_RESULT_URL}" # TODO: HMAC_MD5 this
 
     "#{auth.upcase} #{time_stamp}"
   end
